@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #af3434;
+  overflow-x: hidden;
+
+  /* backdrop.gif as a fixed mask over the existing #FFF3E6 background */
+  background-image: url('/backdrop.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* Darken the gif with a semi-transparent overlay using mix-blend */
+}
+
+/* Dark tint mask on top of the gif, preserving the cream bg tone */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: rgba(255, 243, 230, 0.78);
+  pointer-events: none;
+}
+
+/* All page content floats above the mask */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keep sections transparent so gif shows through */
+section {
+  background: transparent !important;
+}
+
+/* ========================================
+   GLASSMORPHISM UTILITIES
+======================================== */
+
+.glass {
+  background: rgba(255, 243, 230, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 32px rgba(107, 47, 31, 0.10);
+}
+
+.glass-dark {
+  background: rgba(107, 15, 26, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(107, 15, 26, 0.22);
+}
+
+.glass-white {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 8px 32px rgba(107, 47, 31, 0.08);
+}
+
+.glass-hover {
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 243, 230, 0.65);
+  box-shadow: 0 16px 48px rgba(107, 47, 31, 0.18);
+  transform: translateY(-4px);
+}
+
+/* ========================================
+   EVENT BANNER SCROLL ANIMATION
+======================================== */
+
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+  display: inline-block;
+  will-change: transform;
+}
+
+
+/* ========================================
+   LOGO INTRO OVERLAY
+======================================== */
+
+.logo-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Smooth overall fade driven by JS phase */
+  transition: opacity 1s ease, backdrop-filter 1s ease;
+  opacity: 1;
+}
+
+/* JS adds this class at 2.2s → triggers fade-out */
+.logo-intro--fading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* ========================================
+   BLURRED BACKGROUND IMAGE
+======================================== */
+
+.logo-intro-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 120%;
+
+  /* Cover the whole screen */
+  object-fit: cover;
+  object-position: center;
+
+  /* Blur the image itself */
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+
+  /* Scale up slightly so blurred edges don't show white */
+  transform: scale(1.08);
+}
+
+
+/* ========================================
+   SEMI-TRANSPARENT OVERLAY (on top of image)
+======================================== */
+
+.logo-intro-backdrop {
+  position: absolute;
+  inset: 0;
+
+  /* Translucent mask using the site background colour #FFF3E6 */
+  background: rgba(255, 243, 230, 0.82);
+}
+
+
+/* ========================================
+   CENTER LOGO — POP IN
+======================================== */
+
+.center-logo {
+  position: relative;
+  z-index: 2;
+
+  width: 240px;
+  max-width: 58vw;
+
+  /* Run the pop-in for 2.2s (matches JS fade timer) */
+  animation: logoPop 2.2s cubic-bezier(0.22, 1, 0.36, 0.20) forwards;
+
+  /* Start hidden so there's no flash before animation */
+  opacity: 0;
+}
+
+
+/* ========================================
+   KEYFRAMES: scale up + blur clear
+======================================== */
+
+@keyframes logoPop {
+
+  /* Hidden, tiny, blurry */
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    filter: blur(24px);
+  }
+
+  /* Fades in while still blurry */
+  25% {
+    opacity: 0.9;
+    transform: scale(0.78);
+    filter: blur(10px);
+  }
+
+  /* POPS past full size — snappy overshoot */
+  55% {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: blur(0px);
+  }
+
+  /* Settles to natural size */
+  70% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+
+  /* Hold crystal-clear */
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+
+/* ========================================
+   CONTACT US DIALOG
+======================================== */
+
+/* Native <dialog> reset + backdrop */
+.contact-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+
+  width: 95%;
+  max-width: 720px;
+
+  /* Clip scroll to rounded corners */
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 1.25rem;
+  padding: 0;
+
+  background: rgba(255, 243, 230, 0.80);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 25px 60px rgba(107, 47, 31, 0.22);
+
+  /* Animate in */
+  animation: dialogIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Dim backdrop */
+.contact-dialog::backdrop {
+  background: rgba(80, 20, 20, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.contact-dialog-inner {
+  padding: 2rem 3rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 480px) {
+  .contact-dialog-inner {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+/* Scrollbar styled to match dialog background #FFF3E6 */
+.contact-dialog-inner::-webkit-scrollbar {
+  width: 6px;
+}
+
+.contact-dialog-inner::-webkit-scrollbar-track {
+  background: #FFF3E6;
+}
+
+.contact-dialog-inner::-webkit-scrollbar-thumb {
+  background: #e8d5be;
+  border-radius: 999px;
+}
+
+.contact-dialog-inner::-webkit-scrollbar-thumb:hover {
+  background: #d4b896;
+}
+
+/* Tighten spacing inside the form for a compact symmetric layout */
+.contact-dialog-inner .space-y-6 > * + * {
+  margin-top: 0.85rem !important;
+}
+
+.contact-dialog-inner input,
+.contact-dialog-inner select,
+.contact-dialog-inner textarea {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.contact-dialog-inner textarea {
+  rows: 3;
+  min-height: 72px;
+}
+
+.contact-dialog-inner label {
+  margin-bottom: 0.25rem !important;
+}
+
+@keyframes dialogIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
