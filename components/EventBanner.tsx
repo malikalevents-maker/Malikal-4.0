@@ -15,7 +15,7 @@ export default function EventBanner() {
   }
 
   return (
-    <div className="fixed top-16 left-0 right-0 z-40 bg-gradient-to-r from-yellow-400 via-pink-400 to-yellow-400 text-white shadow-lg overflow-hidden">
+    <div className="fixed top-14 left-0 right-0 z-40 bg-gradient-to-r from-yellow-400 via-pink-400 to-yellow-400 text-white shadow-lg overflow-hidden">
       {/* Scrolling text row */}
       <div className="relative py-2 pr-24 sm:pr-28 md:pr-36 overflow-hidden">
         <div className="animate-scroll whitespace-nowrap inline-block">

@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cream: '#af3434',
+        cream: 'hwb(13 71% 3%)',
         maroon: '#6B2E1F',
         'maroon-light': '#8B3E2F',
       },

@@ -1,0 +1,18 @@
+.scroll-reveal {
+  margin: 20px 0;
+  /* Allow children to control their own size via className */
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Only apply default sizing when no textClassName override is present */
+.scroll-reveal-text {
+  line-height: 1.5;
+  font-weight: 600;
+  /* Fallback fluid size — overridden by Tailwind textClassName prop */
+  font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+}
+
+.word {
+  display: inline-block;
+}

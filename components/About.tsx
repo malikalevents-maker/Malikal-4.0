@@ -2,7 +2,7 @@
 
 export default function About() {
   return (
-    <section id="about" className="relative min-h-screen flex items-center justify-center bg-[#FFF3E6] overflow-hidden py-20">
+    <section id="about" className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
 
       {/* Subtle blobs */}
       <div className="absolute top-10 right-10 w-72 h-72 bg-maroon/6 rounded-full blur-3xl pointer-events-none" />

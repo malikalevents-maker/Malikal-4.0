@@ -8,20 +8,24 @@ import UpcomingEvents from '../components/UpcomingEvents'
 import Gallery from '../components/Gallery'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
+import LogoIntro from '../components/LogoIntro'
 
 export default function Home() {
   return (
-    <main className="pb-20 md:pb-0">
-      <Header />
-      <EventBanner />
-      <Hero />
-      <About />
-      <Founder />
-      <Services />
-      <UpcomingEvents />
-      <Gallery />
-      <Contact />
-      <Footer />
-    </main>
+    <>
+      <LogoIntro />
+      <main className="pb-20 md:pb-0">
+        <Header />
+        <EventBanner />
+        <Hero />
+        <About />
+        <Founder />
+        <Services />
+        <UpcomingEvents />
+        <Gallery />
+        <Contact />
+        <Footer />
+      </main>
+    </>
   )
 }

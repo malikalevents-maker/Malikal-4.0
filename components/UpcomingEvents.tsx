@@ -51,7 +51,7 @@ export default function UpcomingEvents() {
   }
 
   return (
-    <section id="upcoming-events" className="relative py-20 bg-[#FFF3E6] overflow-hidden">
+    <section id="upcoming-events" className="relative py-20 overflow-hidden">
 
       {/* Subtle blobs */}
       <div className="absolute top-10 right-1/4 w-80 h-80 bg-maroon/5 rounded-full blur-3xl pointer-events-none" />

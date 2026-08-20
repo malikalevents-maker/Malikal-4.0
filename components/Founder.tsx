@@ -2,20 +2,14 @@
 
 export default function Founder() {
   return (
-    <section id="founder" className="relative py-20 bg-[#FFF3E6] overflow-hidden">
+    <section id="founder" className="relative py-20 overflow-hidden">
 
       {/* Subtle blobs */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-maroon/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-64 h-64 bg-maroon/4 rounded-full blur-3xl pointer-events-none" />
 
       {/* Decorative mandalas */}
-      <div className="absolute top-10 left-10 opacity-8 pointer-events-none">
-        <img src="/mandala-pattern.png" alt="" aria-hidden="true" className="w-32 h-32 object-contain" />
-      </div>
-      <div className="absolute bottom-10 right-10 opacity-8 rotate-180 pointer-events-none">
-        <img src="/mandala-pattern.png" alt="" aria-hidden="true" className="w-32 h-32 object-contain" />
-      </div>
-
+      
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-maroon mb-4">

@@ -29,7 +29,7 @@ export default function Services() {
   ]
 
   return (
-    <section id="services" className="relative py-20 bg-[#FFF3E6] overflow-hidden">
+    <section id="services" className="relative py-20 overflow-hidden">
 
       {/* Subtle blobs */}
       <div className="absolute top-0 left-1/3 w-96 h-96 bg-maroon/5 rounded-full blur-3xl pointer-events-none" />
