@@ -1,21 +1,6 @@
 'use client'
 
-import DomeGallery from './DomeGallery'
-
-const EVENT_IMAGES = [
-  { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop', alt: 'Elegant wedding reception' },
-  { src: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&auto=format&fit=crop', alt: 'Wedding ceremony decoration' },
-  { src: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&auto=format&fit=crop', alt: 'Birthday celebration' },
-  { src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop', alt: 'Corporate conference event' },
-  { src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop', alt: 'Gala dinner event' },
-  { src: 'https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800&auto=format&fit=crop', alt: 'Floral decoration' },
-  { src: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&auto=format&fit=crop', alt: 'Party celebration' },
-  { src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&auto=format&fit=crop', alt: 'Event lights' },
-  { src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&auto=format&fit=crop', alt: 'Concert entertainment' },
-  { src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&auto=format&fit=crop', alt: 'Stage performance' },
-  { src: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop', alt: 'Festive celebration' },
-  { src: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&auto=format&fit=crop', alt: 'Wedding couple' },
-]
+import InteractiveSelector from './ui/interactive-selector'
 
 export default function Gallery() {
   return (
@@ -33,21 +18,9 @@ export default function Gallery() {
         </div>
       </div>
 
-      {/* DomeGallery — needs an explicit height container */}
-      <div className="relative w-full" style={{ height: 'clamp(360px, 75vw, 700px)' }}>
-        <DomeGallery
-          images={EVENT_IMAGES}
-          overlayBlurColor="#FFF3E6"
-          grayscale={false}
-          fit={0.5}
-          minRadius={300}
-          imageBorderRadius="20px"
-          openedImageBorderRadius="24px"
-          openedImageWidth="320px"
-          openedImageHeight="420px"
-          dragSensitivity={22}
-          dragDampening={2}
-        />
+      {/* InteractiveSelector */}
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <InteractiveSelector />
       </div>
 
       {/* Bottom CTA */}

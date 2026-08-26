@@ -4,22 +4,6 @@ export default function About() {
   return (
     <section id="about" className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
 
-      {/* Subtle blobs */}
-      <div className="absolute top-10 right-10 w-72 h-72 bg-maroon/6 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-64 h-64 bg-maroon/4 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Mandalas */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-10 pointer-events-none hidden sm:block">
-        <img src="/mandala-pattern.png" alt="" aria-hidden="true"
-          className="w-64 md:w-96 lg:w-[36rem] h-auto object-contain animate-spin"
-          style={{ animationDuration: '60s' }} />
-      </div>
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 opacity-10 scale-x-[-1] pointer-events-none hidden sm:block">
-        <img src="/mandala-pattern.png" alt="" aria-hidden="true"
-          className="w-64 md:w-96 lg:w-[36rem] h-auto object-contain animate-spin"
-          style={{ animationDuration: '60s', animationDirection: 'reverse' }} />
-      </div>
-
       <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
         <div className="max-w-2xl mx-auto">
           <div className="mb-8">

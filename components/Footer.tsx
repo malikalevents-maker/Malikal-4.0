@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-xl sm:text-2xl font-serif font-bold mb-4">Malikal Events</h3>
+            <h3 className="text-xl sm:text-2xl font-serif font-bold mb-4">Malikal Events And Entertainments</h3>
             <p className="text-gray-300 leading-relaxed text-sm md:text-base">
               Creating unforgettable celebrations with elegance, precision, and unmatched attention to detail.
             </p>

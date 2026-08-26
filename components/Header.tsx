@@ -154,8 +154,8 @@ export default function Header() {
 
           {/* Desktop nav pills — flex-1 fills available space, min-w-0 allows shrink */}
           <nav className="hidden md:flex items-center flex-1 min-w-0 overflow-hidden" aria-label="Main navigation">
-            {/* Nav pills — distributed with auto justify */}
-            <div className="flex items-center min-w-0">
+            {/* Nav pills — pushed to the right */}
+            <div className="flex items-center min-w-0 ml-auto">
               {NAV_LINKS.map(({ label, id }) => (
                 <PillItem
                   key={id}
@@ -167,7 +167,7 @@ export default function Header() {
             </div>
 
             {/* Push social icons to the right */}
-            <div className="flex items-center ml-auto flex-shrink-0">
+            <div className="flex items-center flex-shrink-0">
               {/* Divider */}
               <span className="mx-2 h-4 w-px bg-maroon/20 flex-shrink-0" aria-hidden="true" />
 
