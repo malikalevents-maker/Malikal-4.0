@@ -42,6 +42,7 @@ export default function Hero() {
 
         {/* Scroll-reveal heading */}
         <ScrollReveal
+          scrollContainerRef={scrollContainerRef}
           baseOpacity={0}
           enableBlur={true}
           baseRotation={0}
