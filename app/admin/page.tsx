@@ -16,9 +16,6 @@ interface Contact {
 export default function AdminPage() {
   const [contacts, setContacts] = useState<Contact[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
-
-  const API_URL = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     fetchContacts()
@@ -26,21 +23,11 @@ export default function AdminPage() {
 
   const fetchContacts = async () => {
     try {
-      setLoading(true)
-      setError('')
-
-      const response = await fetch(`${API_URL}/api/contact`)
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch contacts')
-      }
-
+      const response = await fetch('/api/contact')
       const data = await response.json()
-
-      setContacts(data.contacts || [])
+      setContacts(data.contacts)
     } catch (error) {
       console.error('Error fetching contacts:', error)
-      setError('Cannot connect to the backend.')
     } finally {
       setLoading(false)
     }
@@ -49,9 +36,7 @@ export default function AdminPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-cream flex items-center justify-center">
-        <div className="text-xl text-maroon">
-          Loading contacts...
-        </div>
+        <div className="text-xl text-maroon">Loading contacts...</div>
       </div>
     )
   }
@@ -59,77 +44,51 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-cream py-12">
       <div className="container mx-auto px-6">
-
         <div className="mb-8">
           <h1 className="text-4xl font-serif font-bold text-maroon mb-4">
             Contact Form Submissions
           </h1>
-
           <p className="text-gray-600">
             Total submissions: {contacts.length}
           </p>
-
-          {error && (
-            <p className="text-red-600 mt-3">
-              {error}
-            </p>
-          )}
         </div>
 
         <div className="grid gap-6">
           {contacts.length === 0 ? (
             <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-              <p className="text-gray-600">
-                No contact submissions yet.
-              </p>
+              <p className="text-gray-600">No contact submissions yet.</p>
             </div>
           ) : (
             contacts.map((contact) => (
-              <div
-                key={contact._id}
-                className="bg-white p-6 rounded-lg shadow-lg"
-              >
+              <div key={contact._id} className="bg-white p-6 rounded-lg shadow-lg">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-
                   <div>
                     <h3 className="font-semibold text-maroon text-lg">
                       {contact.fullName}
                     </h3>
-
-                    <p className="text-gray-600">
-                      {contact.email}
-                    </p>
-
-                    <p className="text-gray-600">
-                      {contact.phoneNumber}
-                    </p>
+                    <p className="text-gray-600">{contact.email}</p>
+                    <p className="text-gray-600">{contact.phoneNumber}</p>
                   </div>
 
                   <div className="text-right">
                     <span className="inline-block bg-maroon text-white px-3 py-1 rounded-full text-sm">
                       {contact.eventType}
                     </span>
-
                     <p className="text-sm text-gray-500 mt-2">
                       {new Date(contact.createdAt).toLocaleDateString()} at{' '}
                       {new Date(contact.createdAt).toLocaleTimeString()}
                     </p>
                   </div>
-
                 </div>
 
                 <div className="border-t pt-4">
-                  <h4 className="font-medium text-gray-800 mb-2">
-                    Message:
-                  </h4>
-
+                  <h4 className="font-medium text-gray-800 mb-2">Message:</h4>
                   <p className="text-gray-700 leading-relaxed">
                     {contact.message}
                   </p>
                 </div>
 
                 <div className="mt-4 flex justify-between items-center">
-
                   <span
                     className={`px-3 py-1 rounded-full text-sm ${
                       contact.status === 'new'
@@ -155,7 +114,6 @@ export default function AdminPage() {
                       Email
                     </a>
                   </div>
-
                 </div>
               </div>
             ))
@@ -170,7 +128,6 @@ export default function AdminPage() {
             Refresh Data
           </button>
         </div>
-
       </div>
     </div>
   )
