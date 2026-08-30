@@ -1,38 +1,43 @@
 'use client'
 
+import { useRef } from 'react'
 import ScrollReveal from './ScrollReveal'
 import SpecularButton from './SpecularButton'
 import BorderGlow from './BorderGlow'
 
 export default function Hero() {
+  const scrollContainerRef = useRef<HTMLElement | null>(null)
+
   const scrollToContact = () => {
     const element = document.getElementById('contact')
     if (element) element.scrollIntoView({ behavior: 'smooth' })
   }
 
   const cards = [
-    { value: 'Fresh',     label: 'New Beginning' },
-    { value: 'Ready',     label: 'To Create Magic' },
+    { value: 'Fresh', label: 'New Beginning' },
+    { value: 'Ready', label: 'To Create Magic' },
     { value: 'Ambitious', label: 'Vision & Drive' },
   ]
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 pb-16 px-4 sm:px-6 overflow-hidden">
-
-      {/* Blurred background — intro-background.png, scaled to hide blur edges */}
+    <section
+      ref={scrollContainerRef}
+      className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 pb-16 px-4 sm:px-6 overflow-hidden"
+    >
+      {/* Blurred background */}
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 scale-110"
         style={{
-          backgroundImage:    "url('/intro-background.png')",
-          backgroundSize:     'cover',
+          backgroundImage: "url('/intro-background.png')",
+          backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundRepeat:   'no-repeat',
-          filter:             'blur(4px)',
+          backgroundRepeat: 'no-repeat',
+          filter: 'blur(4px)',
         }}
       />
 
-      {/* Soft cream overlay so text stays readable over the blurred image */}
+      {/* Soft cream overlay */}
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-[#FFF3E6]/60"
@@ -42,6 +47,7 @@ export default function Hero() {
 
         {/* Scroll-reveal heading */}
         <ScrollReveal
+          scrollContainerRef={scrollContainerRef}
           baseOpacity={0}
           enableBlur={true}
           baseRotation={0}
@@ -53,11 +59,12 @@ export default function Hero() {
 
         {/* Sub-heading */}
         <p className="text-base sm:text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-          A fresh start in luxury event planning. We bring passion, creativity, and unwavering
-          commitment to transform your vision into reality with precision and elegance.
+          A fresh start in luxury event planning. We bring passion, creativity,
+          and unwavering commitment to transform your vision into reality with
+          precision and elegance.
         </p>
 
-        {/* SpecularButton — React Bits API; md on mobile, lg on sm+ */}
+        {/* Button */}
         <SpecularButton
           size="md"
           radius={999}
@@ -80,7 +87,7 @@ export default function Hero() {
           Start Planning Your Event
         </SpecularButton>
 
-        {/* BorderGlow stat cards — React Bits API */}
+        {/* BorderGlow stat cards */}
         <div className="mt-14 sm:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
           {cards.map(({ value, label }) => (
             <BorderGlow
@@ -96,8 +103,13 @@ export default function Hero() {
               className="h-full"
             >
               <div className="text-center p-6 sm:p-8 h-full flex flex-col justify-center">
-                <div className="text-2xl sm:text-3xl font-bold text-maroon mb-2">{value}</div>
-                <div className="text-gray-700 font-medium text-sm sm:text-base">{label}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-maroon mb-2">
+                  {value}
+                </div>
+
+                <div className="text-gray-700 font-medium text-sm sm:text-base">
+                  {label}
+                </div>
               </div>
             </BorderGlow>
           ))}

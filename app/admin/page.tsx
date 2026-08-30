@@ -69,6 +69,7 @@ export default function AdminPage() {
                     <p className="text-gray-600">{contact.email}</p>
                     <p className="text-gray-600">{contact.phoneNumber}</p>
                   </div>
+
                   <div className="text-right">
                     <span className="inline-block bg-maroon text-white px-3 py-1 rounded-full text-sm">
                       {contact.eventType}
@@ -79,29 +80,34 @@ export default function AdminPage() {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="border-t pt-4">
                   <h4 className="font-medium text-gray-800 mb-2">Message:</h4>
-                  <p className="text-gray-700 leading-relaxed">{contact.message}</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    {contact.message}
+                  </p>
                 </div>
 
                 <div className="mt-4 flex justify-between items-center">
-                  <span className={`px-3 py-1 rounded-full text-sm ${
-                    contact.status === 'new' 
-                      ? 'bg-green-100 text-green-800' 
-                      : 'bg-gray-100 text-gray-800'
-                  }`}>
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm ${
+                      contact.status === 'new'
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-gray-100 text-gray-800'
+                    }`}
+                  >
                     Status: {contact.status}
                   </span>
-                  
+
                   <div className="space-x-2">
-                    <a 
+                    <a
                       href={`tel:${contact.phoneNumber}`}
                       className="bg-maroon text-white px-4 py-2 rounded hover:bg-maroon-light transition-colors"
                     >
                       Call
                     </a>
-                    <a 
+
+                    <a
                       href={`mailto:${contact.email}`}
                       className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors"
                     >
@@ -115,7 +121,7 @@ export default function AdminPage() {
         </div>
 
         <div className="mt-8 text-center">
-          <button 
+          <button
             onClick={fetchContacts}
             className="bg-maroon text-white px-6 py-3 rounded-lg hover:bg-maroon-light transition-colors"
           >
